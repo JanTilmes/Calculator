@@ -18,7 +18,7 @@ public class Rechner extends Application {
 		AnchorPane root = (AnchorPane) FXMLLoader.load(getClass().getResource("GUI.fxml"));
 		Scene scene = new Scene(root);
 		scene.getStylesheets().add(this.getClass().getResource("main.css").toExternalForm());
-		stage.setTitle("Taschenrechner");
+		stage.setTitle("Calculator");
 		stage.setResizable(false);
 		stage.setScene(scene);
 		stage.show();
