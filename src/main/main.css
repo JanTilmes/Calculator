@@ -1,12 +1,12 @@
 .root { 
 	-fx-focus-color: transparent; 
-	-fx-background-color: #fff;
+	-fx-background-color: rgba(119, 119, 119, 0.5);
 	-fx-font-family: 'Courier';
 	-fx-font-size: 14pt;
 }
 
 .button {
-	-fx-background-color: #5271f9;
+	-fx-background-color: #758eff;
 	-fx-text-fill: #fff;
 	-fx-font-weight: bold;
 	-fx-effect: dropshadow(gaussian , rgba(86,86,86,0.3), 10, 0.2, 2, 2);
