@@ -10,8 +10,6 @@ public class Rechner extends Application {
 
 	public static void main(String[] args) {
 		launch(args);
-		
-		
 	}
 
 	public void start(Stage stage) throws Exception {
@@ -24,6 +22,10 @@ public class Rechner extends Application {
 		stage.show();
 	}
 
+	/**
+	 * @param value, the String input from a textfield
+	 * @return true, if the String contains a ',' and is therefore a floating point number
+	 */
 	protected static boolean checkIfFloatingNumber(String value) {
 		if (value.contains(",")) {
 			return true;
@@ -32,12 +34,21 @@ public class Rechner extends Application {
 		return false;
 	}
 
+	/**
+	 * @param value, the String input from a textfield
+	 * @return Double value, wich is represented in the given String
+	 */
 	protected static double convertToDouble(String value) {
 		String text = value.replace(",", ".");
 		Double result = Double.valueOf(text);
 		return result;
 	}
 
+	/**
+	 * @param text, the String input from a textfield
+	 * @return The converted String made into a negative Double value if the first char is '-', 
+	 * 			else just replace the ',' with a '.' and parse to Double
+	 */
 	protected static double checkIfNegativeDouble(String text) {
 		char minus = '-';
 		if (text.charAt(0) == minus) {
@@ -54,6 +65,10 @@ public class Rechner extends Application {
 		}
 	}
 
+	/**
+	 * @param text, the String input from a textfield
+	 * @return The converted String made into a negative Integer value
+	 */
 	protected static int checkIfNegativeInteger(String text) {
 		char minus = '-';
 		if (text.charAt(0) == minus) {

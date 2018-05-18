@@ -2,23 +2,14 @@ package main;
 
 
 
-import java.awt.KeyEventDispatcher;
-import java.awt.KeyboardFocusManager;
-import java.awt.event.KeyEvent;
-
-import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Rectangle;
-import javafx.stage.Stage;
 
 public class GUIController {
 
@@ -108,7 +99,7 @@ public class GUIController {
 		textfieldOne.textProperty().addListener(new ChangeListener<String>() {
 	        @Override
 	        public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-	            if (!newValue.matches("\\d{0,10}([\\,]\\d{0,7})?")) {
+	            if (!newValue.matches("-?\\d{0,10}([\\,]\\d{0,7})?")) {
 	            	textfieldOne.setText(oldValue);
 	            }
 	        }
@@ -117,7 +108,7 @@ public class GUIController {
 		textfieldTwo.textProperty().addListener(new ChangeListener<String>() {
 	        @Override
 	        public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-	            if (!newValue.matches("\\d{0,10}([\\,]\\d{0,7})?")) {
+	            if (!newValue.matches("-?\\d{0,10}([\\,]\\d{0,7})?")) {
 	            	textfieldTwo.setText(oldValue);
 	            }
 	        }
@@ -126,6 +117,7 @@ public class GUIController {
 
 	/*
 	 * Number-Functions
+	 * Writes the number according to the buttons pressed into the currently active textfield
 	 */
 	public void oneClicked() {
 		if (textfieldOne.isFocused()) {
@@ -211,7 +203,7 @@ public class GUIController {
 	 * Calc-Functions
 	 */
 	public void plusClicked() {
-		if (Rechner.checkIfFloatingNumber(textfieldOne.getText())
+		if (Rechner.checkIfFloatingNumber(textfieldOne.getText())  //Check if one or both entered numbers are Double
 				|| Rechner.checkIfFloatingNumber(textfieldTwo.getText())) {
 			double valueOne = Rechner.checkIfNegativeDouble(textfieldOne.getText());
 			double valueTwo = Rechner.checkIfNegativeDouble(textfieldTwo.getText());
@@ -238,7 +230,7 @@ public class GUIController {
 	}
 
 	public void minusClicked() {
-		if (Rechner.checkIfFloatingNumber(textfieldOne.getText())
+		if (Rechner.checkIfFloatingNumber(textfieldOne.getText())	//Check if one or both entered numbers are Double
 				|| Rechner.checkIfFloatingNumber(textfieldTwo.getText())) {
 			double valueOne = Rechner.checkIfNegativeDouble(textfieldOne.getText());
 			double valueTwo = Rechner.checkIfNegativeDouble(textfieldTwo.getText());
@@ -265,7 +257,7 @@ public class GUIController {
 	}
 
 	public void multiClicked() {
-		if (Rechner.checkIfFloatingNumber(textfieldOne.getText())
+		if (Rechner.checkIfFloatingNumber(textfieldOne.getText())	//Check if one or both entered numbers are Double
 				|| Rechner.checkIfFloatingNumber(textfieldTwo.getText())) {
 			double valueOne = Rechner.checkIfNegativeDouble(textfieldOne.getText());
 			double valueTwo = Rechner.checkIfNegativeDouble(textfieldTwo.getText());
@@ -292,7 +284,7 @@ public class GUIController {
 	}
 
 	public void divideClicked() {
-		if (Rechner.checkIfFloatingNumber(textfieldOne.getText())
+		if (Rechner.checkIfFloatingNumber(textfieldOne.getText())	//Check if one or both entered numbers are Double
 				|| Rechner.checkIfFloatingNumber(textfieldTwo.getText())) {
 			double valueOne = Rechner.checkIfNegativeDouble(textfieldOne.getText());
 			double valueTwo = Rechner.checkIfNegativeDouble(textfieldTwo.getText());
@@ -327,7 +319,7 @@ public class GUIController {
 	}
 
 	public void moduloClicked() {
-		if (Rechner.checkIfFloatingNumber(textfieldOne.getText())
+		if (Rechner.checkIfFloatingNumber(textfieldOne.getText())	//Check if one or both entered numbers are Double
 				|| Rechner.checkIfFloatingNumber(textfieldTwo.getText())) {
 
 			double valueOne = Double.parseDouble(textfieldOne.getText());
@@ -354,9 +346,12 @@ public class GUIController {
 		textfieldOne.clear();
 		textfieldTwo.clear();
 		resultLabel.setText("");
-		resultBox.setVisible(false);
+		textfieldOne.requestFocus();;
 	}
 
+	/*
+	 * Toggle the preceding '-' for the currently focused textfield
+	 */
 	public void plusMinusClicked() {
 		if (textfieldOne.isFocused() && textfieldOneMinusSet == false) {
 			String string = "-";
